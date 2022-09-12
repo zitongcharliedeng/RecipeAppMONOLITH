@@ -1,0 +1,25 @@
+<%# if logged_in? %>
+    <%# redirect to home %>
+<%# else %>
+    <% provide(:title, "Signup!") %>
+
+    <h1>
+        Welcome to RecipeApp!
+    </h1>
+
+    <h2>
+        This is the signup page.
+    </h2>
+    
+    <% provide(:last_button, "Create my account") # provides must be given BEFORE the the yield calls it (up to down chronologically in code)%> 
+    <%= render 'users/form' %>
+
+
+
+
+
+
+
+  
+
+<%# end %>
