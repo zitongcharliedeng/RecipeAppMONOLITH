@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
   get "/signup", to: "users#new"
   resources :users # why does signup form break when i delete this???
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
 end
