@@ -1,0 +1,25 @@
+<%# if logged_in? %>
+    <%# redirect to home %>
+<%# else %>
+    <% provide(:title, "Login!") %>
+
+    <h1>
+        Welcome to RecipeApp!
+    </h1>
+
+    <h2>
+        This is the login page.
+    </h2>
+    
+    <% provide(:last_button, "Login to my account") # provides must be given BEFORE the the yield calls it (up to down chronologically in code)%> 
+    <%= render 'sessions/loginform' %>
+
+
+
+
+
+
+
+  
+
+<%# end %>
