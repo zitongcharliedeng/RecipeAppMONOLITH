@@ -19,6 +19,8 @@ class RecipesController < ApplicationController
 
 
     def show
+        @recipe = Recipe.find(params[:id])
+        @user = User.find_by(id: [@recipe.user_id])
     end
 
     private #helper functions only for METHODS within the class (.method.private_method)
