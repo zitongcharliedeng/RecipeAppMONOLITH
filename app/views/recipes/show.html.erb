@@ -20,10 +20,10 @@
 <h3> 
     <em>Instructions:</em>
     <br/>
-    <% ingredients_array = @recipe.instructions.to_s.split(";") #( split by a new line) %>
+    <% instructions_array = @recipe.instructions.to_s.split(";") #( split by a new line) %>
     <ol>
         
-            <% for each in ingredients_array do %>
+            <% for each in instructions_array do %>
                 <li>
                     <%= each %>
                 </li>
