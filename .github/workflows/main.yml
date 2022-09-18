@@ -1,6 +1,6 @@
 name: Deploy
 
-on:
+on: #run entire file on these conditions...
   push:
     branches:
       - main
@@ -15,3 +15,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "protected-taiga-42269" #Must be unique in Heroku
           heroku_email: "zitongcharliedeng2003@gmail.com"
+          
