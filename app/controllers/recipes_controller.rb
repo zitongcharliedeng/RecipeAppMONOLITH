@@ -7,7 +7,9 @@ class RecipesController < ApplicationController
     def create
         @recipe = Recipe.new(recipe_params)
         @recipe.user_id = session[:user_id]
-        
+        if recipe_params[:cover_image].nil?
+            @recipe.cover_image.attach(io: File.open("#{Rails.root}/app/assets/images/kitten.jpg"), filename: 'kitten.jpg', content_type: 'image/jpg')
+        end
 
         if @recipe.save
             flash[:success] = "Recipe uploaded"
@@ -18,7 +20,7 @@ class RecipesController < ApplicationController
     end
 
 
-    def show
+    def show 
         @recipe = Recipe.find(params[:id])
         @user = User.find_by(id: [@recipe.user_id])
     end
