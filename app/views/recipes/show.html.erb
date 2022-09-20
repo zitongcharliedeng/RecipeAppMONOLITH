@@ -1,11 +1,14 @@
 <h1>
-    <em>A recipe by for...</em>
+    <em>A recipe for...</em>
     <br/>
     <%= "#{@recipe.title}" %>
     <br/>
-    By: <%= @user.name %>
-
+    <%= image_tag @recipe.cover_image %>
+    <br/>
+    Uploaded by: <%= @user.name %>
 </h1>
+
+
 
 <h2>
     <em>Ingredients:</em>
