@@ -3,6 +3,9 @@ NOTICE: SPLIT DIFFERENT INGREDIENTS WITH A SEMI-COLON (;)
     <%= f.label :title %>
     <%= f.text_field :title %>
 
+    <%= f.label :cover_image %>
+    <%= f.file_field :cover_image %>
+  
     <%= f.label :ingredients %>
     <%= f.text_field :ingredients %>
 
@@ -10,4 +13,5 @@ NOTICE: SPLIT DIFFERENT INGREDIENTS WITH A SEMI-COLON (;)
     <%= f.text_field :instructions %>
 
     <%= f.submit "Upload recipe!" %>
+
 <% end %>
