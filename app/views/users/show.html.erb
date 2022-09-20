@@ -1,0 +1,14 @@
+<% provide(:title, "Recipes of #{@user.name}") %>
+<%= "#{@user.name}'s recipes" %>
+
+<% if @user.recipes.nil? == true %>
+    <%= "This user hasn't uploaded any recipes yet ):" %>    
+<% else %>
+    
+    <ul>
+        <% @user.recipes.all.each do |recipe|%>
+            <%= render partial: 'recipes/recipe_thumbnail', locals: {recipe: recipe} %> 
+        <% end %>
+    </ul>
+
+<% end %>

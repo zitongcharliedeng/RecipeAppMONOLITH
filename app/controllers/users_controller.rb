@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    
+    include SessionsHelper
     def new
         @user = User.new
     end
@@ -12,6 +12,10 @@ class UsersController < ApplicationController
         else
             render 'users/failedsignup'
         end
+    end
+
+    def show
+        @user = User.find_by(params[:id])
     end
 
 
