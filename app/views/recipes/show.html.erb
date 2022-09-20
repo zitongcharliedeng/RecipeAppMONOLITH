@@ -13,7 +13,7 @@
 <h2>
     <em>Ingredients:</em>
     <br/>
-    <% ingredients_array = @recipe.ingredients.to_s.split(";") #( split by a new line) %>
+    <% ingredients_array = @recipe.ingredients.to_s.split("\n") #( split by a new line) %>
     <% for each in ingredients_array do %>
         <%= each %>
         <br/>
@@ -23,7 +23,7 @@
 <h3> 
     <em>Instructions:</em>
     <br/>
-    <% instructions_array = @recipe.instructions.to_s.split(";") #( split by a new line) %>
+    <% instructions_array = @recipe.instructions.to_s.split("\n") #( split by a new line) %>
     <ol>
         
             <% for each in instructions_array do %>
@@ -35,4 +35,5 @@
         
     </ol>
 </h3>
+
 
