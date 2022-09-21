@@ -45,7 +45,7 @@
         <%= f.label :content %>
         <%= f.text_field :content, class: 'comment-content' %>
         <br/>
-        
+        <%= f.hidden_field :recipe_id, value: @recipe.id %>
         <%= f.submit "Upload comment!" %>
     <% end %>
 <% else %>
