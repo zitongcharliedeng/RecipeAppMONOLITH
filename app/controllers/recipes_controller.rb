@@ -23,11 +23,11 @@ class RecipesController < ApplicationController
     def show 
         @recipe = Recipe.find(params[:id])
         @user = User.find_by(id: [@recipe.user_id])
+        @comment = Comment.new
     end
 
     private #helper functions only for METHODS within the class (.method.private_method)
       def recipe_params
         params.require(:recipe).permit(:title,:cover_image, :ingredients, :instructions)
       end
-    
 end

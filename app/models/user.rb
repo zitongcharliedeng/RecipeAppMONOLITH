@@ -11,7 +11,7 @@ class User < ApplicationRecord
     include ActiveModel::Validations
 
     has_many :recipes,  dependent: :destroy
-
+    has_many :comments,  dependent: :destroy
 
     before_save { self.email.downcase! }
 
