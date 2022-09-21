@@ -37,3 +37,16 @@
 </h3>
 
 
+<%= "Comments (number of comments):" %>
+========================================
+
+<% if session[:user_id] %>
+    <%= form_with(model: @comment, local: true) do |f| %>
+        <%= f.label :content %>
+        <%= f.text_field :content, class: 'comment-content' %>
+        <br/>
+        
+        <%= f.submit "Upload comment!" %>
+    <% end %>
+<% else %>
+<% end %>
