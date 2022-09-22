@@ -24,6 +24,9 @@ class RecipesController < ApplicationController
         @recipe = Recipe.find(params[:id])
         @user = User.find_by(id: [@recipe.user_id])
         @comment = Comment.new
+        @rating = Rating.new
+
+        @current_rating = Rating.all.find_by(recipe_id: @recipe.id , user_id: @user.id )
     end
 
     private #helper functions only for METHODS within the class (.method.private_method)

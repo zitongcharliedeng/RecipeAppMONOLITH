@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   #recipes
   resources :recipes
   resources :comments
+  resources :ratings
 end

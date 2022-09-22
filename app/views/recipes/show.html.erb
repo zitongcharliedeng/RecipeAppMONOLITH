@@ -1,3 +1,24 @@
+<% if @current_rating %>
+    <%= "Your rating of the following recipe is #{@current_rating.rating}." %>
+<% end %>
+
+<% if @current_rating %>
+    <%= form_with(model: @rating, url: "/ratings/#{@current_rating.id}", method: :patch, local: true) do |f| %>
+        <%= f.label :rating_out_of_5 %>
+        <%= f.text_field :rating %>
+        <%= f.hidden_field :recipe_id, value: @recipe.id %>
+        <%= f.submit "Update rating!" %>
+    <% end %>
+<% else %>
+    <%= form_with(model: @rating, local: true) do |f| %>
+            <%= f.label :rating_out_of_5 %>
+            <%= f.text_field :rating %>
+            <%= f.hidden_field :recipe_id, value: @recipe.id %>
+            <%= f.submit "Upload rating!" %>
+    <% end %>
+<% end %>
+
+
 <h1>
     <em>A recipe for...</em>
     <br/>
