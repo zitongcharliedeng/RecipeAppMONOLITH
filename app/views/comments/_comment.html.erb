@@ -1,0 +1,9 @@
+<div>
+    <strong><%= User.find_by(id:comment.user_id).name %></strong>
+    <br/>
+    <%= comment.content%>
+    <br/>
+    <em><%= comment.created_at%></em>
+    <br/>
+    <br/>
+</div>
