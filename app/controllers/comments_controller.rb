@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
     def create
         @comment = Comment.new(comment_params)
         @comment.user_id = session[:user_id]
-        @comment.recipe_id
 
         if @comment.save
             flash[:success] = "Comment uploaded"
