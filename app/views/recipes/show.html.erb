@@ -1,8 +1,12 @@
+
+<%= "Average star rating of the following recipe is  #{@average_rating}." %>
+
+
 <% if @current_rating %>
     <%= "Your rating of the following recipe is #{@current_rating.rating}." %>
 <% end %>
 
-<% if @current_rating %>
+<% if @current_rating && session[:user_id] %>
     <%= form_with(model: @rating, url: "/ratings/#{@current_rating.id}", method: :patch, local: true) do |f| %>
         <%= f.label :rating_out_of_5 %>
         <%= f.text_field :rating %>
@@ -26,7 +30,7 @@
     <br/>
     <%= image_tag @recipe.cover_image %>
     <br/>
-    Uploaded by: <%= @user.name %>
+    Uploaded by: <%= @author.name %>
 </h1>
 
 
