@@ -49,4 +49,11 @@
         <%= f.submit "Upload comment!" %>
     <% end %>
 <% else %>
+    <%= "(You must be logged in to comment)" %>
 <% end %>
+
+<ul>
+    <% Comment.all.each do |comment|%>
+        <%= render partial: 'comments/comment', locals: {comment: comment} %> 
+    <% end %>
+</ul>
