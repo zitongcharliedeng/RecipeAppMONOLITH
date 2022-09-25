@@ -22,11 +22,27 @@ class RecipesController < ApplicationController
 
     def show 
         @recipe = Recipe.find(params[:id])
-        @user = User.find_by(id: [@recipe.user_id])
+        @author = User.find_by(id: [@recipe.user_id])
+        @user = User.find_by(id: session[:user_id])
         @comment = Comment.new
         @rating = Rating.new
 
-        @current_rating = Rating.all.find_by(recipe_id: @recipe.id , user_id: @user.id )
+        @current_rating = Rating.find_by(recipe_id: @recipe.id , user_id: @user.id )
+
+        
+        # finding average rating of a recipe, @average_rating
+        @array_of_recipe_ratings = []
+        for rating in Rating.where(recipe_id: @recipe.id) do
+            @array_of_recipe_ratings << rating.rating
+        end
+
+        @total = 0.00
+    
+        for rating in @array_of_recipe_ratings do
+            @total += rating.to_f
+        end
+
+        @average_rating = (@total / (@array_of_recipe_ratings.length)).round(2)
     end
 
     private #helper functions only for METHODS within the class (.method.private_method)
