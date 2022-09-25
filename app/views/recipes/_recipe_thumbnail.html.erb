@@ -1,7 +1,7 @@
 <div class="recipe-thumbnail">
     <%= image_tag (recipe.cover_image) %>
     <br>
-    <%= "#{recipe.title}" %>
+    <%= "#{recipe.title}, #{average_rating(recipe)} stars" %>
     <br/>
     by: <%= recipe.user.name %>
 </div>

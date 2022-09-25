@@ -2,7 +2,7 @@
 <h1>All recipes</h1>
 
 <ul>
-    <% Recipe.all.each do |recipe|%>
+    <% @rating_ordered_recipes.each do |recipe|%>
         <%= render partial: 'recipes/recipe_thumbnail', locals: {recipe: recipe} %> 
     <% end %>
 </ul>
