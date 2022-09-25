@@ -29,21 +29,11 @@ class RecipesController < ApplicationController
         @rating = Rating.new
 
         @current_rating = Rating.find_by(recipe_id: @recipe.id , user_id: @user.id )
-
-        
-        @average_rating = average_rating(@recipe)
     end
 
     def index
-        @rating_ordered_recipes = []
-        @hash_of_ratings_and_their_recipe = {}
-        for recipe in Recipe.all
-            @hash_of_ratings_and_their_recipe[recipe.id] = average_rating(recipe)
-        end
-        @rating_ordered_recipes_hash = @hash_of_ratings_and_their_recipe.sort_by{|k,v| v*(-1)}
-        for k,v in @rating_ordered_recipes_hash
-            @rating_ordered_recipes << Recipe.find_by(id: k)
-        end
+        @rating_ordered_recipes = Recipe.all.sort_by{|recipe| recipe.average_rating*(-1)}
+        
     end
     
     private #helper functions only for METHODS within the class (.method.private_method)
