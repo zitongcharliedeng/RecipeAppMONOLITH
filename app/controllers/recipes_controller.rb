@@ -27,13 +27,13 @@ class RecipesController < ApplicationController
         @comment = Comment.new
         @rating = Rating.new
 
-        @current_rating = Rating.all.find_by(recipe_id: @recipe.id , user_id: @user.id )
+        @current_rating = Rating.find_by(recipe_id: @recipe.id , user_id: @user.id )
 
         
         # finding average rating of a recipe, @average_rating
         @array_of_recipe_ratings = []
-        for rating in Rating.all do
-            ( @array_of_recipe_ratings << rating.rating ) if rating.recipe_id ==  @recipe.id
+        for rating in Rating.where(recipe_id: @recipe.id) do
+            @array_of_recipe_ratings << rating.rating
         end
 
         @total = 0.00
