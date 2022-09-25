@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
     include SessionsHelper
+    include RecipesHelper
     def new
         @recipe = Recipe.new
     end
@@ -28,25 +29,16 @@ class RecipesController < ApplicationController
         @rating = Rating.new
 
         @current_rating = Rating.find_by(recipe_id: @recipe.id , user_id: @user.id )
-
-        
-        # finding average rating of a recipe, @average_rating
-        @array_of_recipe_ratings = []
-        for rating in Rating.where(recipe_id: @recipe.id) do
-            @array_of_recipe_ratings << rating.rating
-        end
-
-        @total = 0.00
-    
-        for rating in @array_of_recipe_ratings do
-            @total += rating.to_f
-        end
-
-        @average_rating = (@total / (@array_of_recipe_ratings.length)).round(2)
     end
 
+    def index
+        @rating_ordered_recipes = Recipe.all.sort_by{|recipe| recipe.average_rating*(-1)}
+        
+    end
+    
     private #helper functions only for METHODS within the class (.method.private_method)
       def recipe_params
         params.require(:recipe).permit(:title,:cover_image, :ingredients, :instructions)
       end
+
 end
