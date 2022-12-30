@@ -22,20 +22,13 @@ class RecipesController < ApplicationController
 
 
     def show 
-        p "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        p params[:id].to_i
-        @recipe = Recipe.find_by(id: (params[:id].to_i))
+        @recipe = Recipe.find(params[:id])
         @author = User.find_by(id: [@recipe.user_id])
-
         @user = User.find_by(id: session[:user_id])
-        if @user
-            @comment = Comment.new
-            @rating = Rating.new
+        @comment = Comment.new
+        @rating = Rating.new
 
-            @current_rating = Rating.find_by(recipe_id: @recipe.id , user_id: @user.id )
-        else
-        end
-        
+        @current_rating = Rating.find_by(recipe_id: @recipe.id , user_id: @user.id )
     end
 
     def index

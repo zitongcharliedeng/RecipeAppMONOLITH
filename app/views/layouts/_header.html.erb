@@ -2,13 +2,36 @@
        
         <img src= "https://www.verywellhealth.com/thmb/6ii-Twvctk3x31G3E-i05ZUMfv8=/800x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/30D7A016-ABA5-48DD-BE39-3E7A223A03BF-96f2ba9e6c724dc9b2ba638b0c0f44a2.jpeg" width= "100px" >
         
-        
-        
+
+        logged in as id<%= "#{session[:user_id]}" %>
         <a href="/home">
              HOME
         </a>
-        logged in as id<%= "#{session[:user_id]}" %>
-     
+        <a href="/signup">
+             SIGN UP
+        </a>
+        <a href="/login">
+             LOGIN
+        </a>
+        <a href="/home">
+             HOME
+        </a>
+        <a href="/recipes/new">
+             CREATE A RECIPE
+        </a>
+        <a href="/recipes">
+             VIEW RECIPES
+        </a>
+
+        <p>
+             VIEW RECIPE 
+             <form>
+                <%= form_with(url: "/recipes", method: :get) do |f| %>
+                        <%= f.text_field :recipeNumber %>
+                        <%= f.submit "Search" %>
+                <% end %>
+             </form>
+        </p>
         
 <%
 =begin%>

@@ -1,7 +1,13 @@
 <div class="recipe-thumbnail">
     <%= image_tag (recipe.cover_image) %>
     <br>
-    <%= "#{recipe.title}, #{recipe.average_rating} stars" %>
+    <%= "ID: #{recipe.id}, #{recipe.title}, #{recipe.average_rating} stars" %>
     <br/>
     by: <%= recipe.user.name %>
+
+    <%= link_to "/recipes/#{recipe.id}" do %>
+        <button>View Recipe</button>
+    <% end %>
+
+
 </div>
