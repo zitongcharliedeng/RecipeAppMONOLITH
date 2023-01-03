@@ -1,6 +1,13 @@
 module SessionsHelper
     def log_in(user)
-        session[:user_id] = user.id
+        if (user == 0) 
+            p "111111111111"
+            return session[:user_id] = nil 
+        else
+            p "222222222222"
+            session[:user_id] = user.id 
+            session[:email] = user.email
+        end
     end
 
     def current_user

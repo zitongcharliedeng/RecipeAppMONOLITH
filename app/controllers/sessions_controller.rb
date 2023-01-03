@@ -18,8 +18,7 @@ class SessionsController < ApplicationController
     end
 
     def delete
-    end
-
-    def destroy
+        log_in(0)
+        redirect_to '/home'
     end
 end

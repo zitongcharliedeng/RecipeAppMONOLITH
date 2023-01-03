@@ -22,8 +22,6 @@ class RecipesController < ApplicationController
 
 
     def show 
-        p "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        p params[:id].to_i
         @recipe = Recipe.find_by(id: (params[:id].to_i))
         @author = User.find_by(id: [@recipe.user_id])
 
@@ -39,13 +37,18 @@ class RecipesController < ApplicationController
     end
 
     def index
-        @rating_ordered_recipes = Recipe.all.sort_by{|recipe| recipe.average_rating*(-1)}
-        
+        p params
+        if (params[:recipeTitle] == "") || !(params[:recipeTitle])
+            return @rating_ordered_recipes = Recipe.all.sort_by{|recipe| recipe.average_rating*(-1)}
+        else
+            p "222222222" 
+            return @rating_ordered_recipes = (Recipe.all.select {|recipe| recipe.title.downcase.start_with?(params[:recipeTitle])}).sort_by{|recipe| recipe.average_rating*(-1)}
+        end
     end
     
     private #helper functions only for METHODS within the class (.method.private_method)
       def recipe_params
         params.require(:recipe).permit(:title,:cover_image, :ingredients, :instructions)
       end
-
+ 
 end

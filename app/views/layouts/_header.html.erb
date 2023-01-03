@@ -1,49 +1,40 @@
 <header>
-       
-        <img src= "https://www.verywellhealth.com/thmb/6ii-Twvctk3x31G3E-i05ZUMfv8=/800x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/30D7A016-ABA5-48DD-BE39-3E7A223A03BF-96f2ba9e6c724dc9b2ba638b0c0f44a2.jpeg" width= "100px" >
+     <img src= "https://cdn2.iconfinder.com/data/icons/rounded_square_icons__books_by_deleket-dexzmr/128/Recipe_Book.png" width= "100ch" >
+     <h1>RecipeApp</h1>
+
+     <% if (session[:user_id]) %>
+          Logged in as <%= "#{session[:email]}" %>
+          <%= button_to "Logout", controller: "sessions", action: "delete" %>
+     <% else %>
+          <a href="/login">
+               LOGIN
+          </a>
+          
+     <% end %> 
+
+     
+     <a href="/home">
+          HOME
+     </a>
+     <a href="/signup">
+          SIGN UP
+     </a>
+     
+     <a href="/recipes/new">
+          CREATE A RECIPE
+     </a>
+     <a href="/recipes">
+          VIEW ALL RECIPES
+     </a>
+
+     <form>
+          <%= form_with method: :get, url: "/recipes", local: true do |f| %> 
+               <%= f.text_field :recipeTitle, placeholder: "Search for a recipe"%>
+               <%= f.submit "Search" %>
+          <% end %>
+     </form>
         
 
-        logged in as id<%= "#{session[:user_id]}" %>
-        <a href="/home">
-             HOME
-        </a>
-        <a href="/signup">
-             SIGN UP
-        </a>
-        <a href="/login">
-             LOGIN
-        </a>
-        <a href="/home">
-             HOME
-        </a>
-        <a href="/recipes/new">
-             CREATE A RECIPE
-        </a>
-        <a href="/recipes">
-             VIEW RECIPES
-        </a>
-
-        <p>
-             VIEW RECIPE 
-             <form>
-                <%= form_with(url: "/recipes", method: :get) do |f| %>
-                        <%= f.text_field :recipeNumber %>
-                        <%= f.submit "Search" %>
-                <% end %>
-             </form>
-        </p>
-        
-<%
-=begin%>
- 
-        <% if logged_in? %>
-        account
-
-        <% else %>
-            login
-        <% end %> 
-<%
-=end%>
    
 
 </header>

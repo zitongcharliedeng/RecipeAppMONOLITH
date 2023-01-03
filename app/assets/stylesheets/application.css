@@ -13,9 +13,30 @@
  *= require_tree .
  *= require_self
  */
+*{
+    background-color: rgb(195, 243, 164);
+}
 
 header{
     border-color: green;
-    color: limegreen;
-    background-color: greenyellow;
+    color: rgb(36, 184, 36);
+    background-color: rgb(147, 252, 87);
+    display: flex;
+    height: 100px;
+    align-items: center;
 }
+
+header *{
+    background-color: inherit;
+}
+
+header h1{
+    font-size: 75px;
+    font-style: italic;
+    padding-right: 1ch;
+}
+
+header a{
+    padding: 1ch;
+}
+

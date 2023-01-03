@@ -1,15 +1,19 @@
-<%# if logged_in? %>
-<%# else %>
+<h1>
+    Welcome to RecipeApp!
+</h1>
 
-    <h1>
-        Welcome to RecipeApp!
-    </h1>
-
-    <h2>
-        This is the home page.
-    </h2>
-
-
-    <% provide(:title, "Home") %>
-
-<%# end %>
+<h2>
+    On this website you can:
+    <ul>
+        <li>
+            <a href="/signup"> Create a free account </a>
+        </li>
+        <li>
+            Search-for, rate, comment-on and favourite other people's recipes
+        </li>
+        <li>
+            Post your own recipes!
+        </li>
+    </ul>
+</h2>
+<% provide(:title, "Home") %>
