@@ -1,6 +1,9 @@
 
 <%= "Average star rating of the following recipe is  #{@recipe.average_rating}." %>
 
+<% if session[:user_id] %>
+    <%= "Your rating of the following recipe is #{@current_rating.rating}." %>
+<% end %>
 
 <% if @current_rating %>
     <%= "Your rating of the following recipe is #{@current_rating.rating}." %>
@@ -13,14 +16,20 @@
         <%= f.hidden_field :recipe_id, value: @recipe.id %>
         <%= f.submit "Update rating!" %>
     <% end %>
-<% else %>
+<% elsif session[:user_id] %>
     <%= form_with(model: @rating, local: true) do |f| %>
             <%= f.label :rating_out_of_5 %>
             <%= f.text_field :rating %>
             <%= f.hidden_field :recipe_id, value: @recipe.id %>
             <%= f.submit "Upload rating!" %>
     <% end %>
+<%else%>
+    <br/>
+    (Login to rate this recipe)
 <% end %>
+
+
+
 
 
 <h1>

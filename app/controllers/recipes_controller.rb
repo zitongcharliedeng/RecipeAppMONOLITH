@@ -11,9 +11,12 @@ class RecipesController < ApplicationController
         if recipe_params[:cover_image].nil?
             @recipe.cover_image.attach(io: File.open("#{Rails.root}/app/assets/images/kitten.jpg"), filename: 'kitten.jpg', content_type: 'image/jpg')
         end
-
         if @recipe.save
             flash[:success] = "Recipe uploaded"
+            #create initial rating of own recipe to be 0, so index can sort recipes by defined ratings
+            @rating = Rating.new(recipe_id: @recipe.id, user_id: session[:user_id], rating: 0)
+            @rating.save
+            
             redirect_to '/home'
         else
             render '/recipes/error'
@@ -39,9 +42,9 @@ class RecipesController < ApplicationController
     def index
         p params
         if (params[:recipeTitle] == "") || !(params[:recipeTitle])
+            Recipe.all.map{|recipe| p recipe.average_rating}
             return @rating_ordered_recipes = Recipe.all.sort_by{|recipe| recipe.average_rating*(-1)}
         else
-            p "222222222" 
             return @rating_ordered_recipes = (Recipe.all.select {|recipe| recipe.title.downcase.start_with?(params[:recipeTitle])}).sort_by{|recipe| recipe.average_rating*(-1)}
         end
     end

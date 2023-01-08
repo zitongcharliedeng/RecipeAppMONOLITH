@@ -27,13 +27,13 @@
           VIEW ALL RECIPES
      </a>
 
-     <form>
-          <%= form_with method: :get, url: "/recipes", local: true do |f| %> 
-               <%= f.text_field :recipeTitle, placeholder: "Search for a recipe"%>
-               <%= f.submit "Search" %>
-          <% end %>
-     </form>
-        
+     
+     <%= form_with method: :get, url: "/recipes" do |f| %> 
+          <%= f.text_field :recipeTitle, placeholder: "Search for a recipe"%>
+          <%= f.submit "Search" %>
+     <% end %>
+     
+     
 
    
 

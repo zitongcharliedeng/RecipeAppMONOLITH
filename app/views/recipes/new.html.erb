@@ -1,21 +1,30 @@
-NOTICE: SPLIT DIFFERENT INGREDIENTS WITH A NEW LINE (PRESS ENTER)
-<%= form_with(model: @recipe, local: true) do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'title-input' %>
-    <br/>
+    
+<% if (session[:user_id])%>   
+    <h3>NOTICE: SPLIT DIFFERENT INGREDIENTS WITH A NEW LINE (PRESS ENTER)</h3>
+    <%= form_with(model: @recipe, local: true) do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'title-input' %>
+        <br/>
 
-    <%= f.label :cover_image %>
-    <%= f.file_field :cover_image %>
-    <br/>
+        <%= f.label :cover_image %>
+        <%= f.file_field :cover_image %>
+        <br/>
 
-    <%= f.label :ingredients %>
-    <%= f.text_area :ingredients, class: 'ingredients-input' %>
-    <br/>
+        <%= f.label :ingredients %>
+        <%= f.text_area :ingredients, class: 'ingredients-input' %>
+        <br/>
 
-    <%= f.label :instructions %>
-    <%= f.text_area :instructions, class: 'instructions-input' %>
-    <br/>
+        <%= f.label :instructions %>
+        <%= f.text_area :instructions, class: 'instructions-input' %>
+        <br/>
+        <%= f.submit "Upload recipe!" %>
 
-    <%= f.submit "Upload recipe!" %>
-
-<% end %>
+    <% end %>
+<%else%>
+    <h2> You must 
+        <a href="/login">
+            log in
+        </a> 
+        to create a recipe
+    </h2>
+<%end%>
