@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
         @recipe = Recipe.new(recipe_params)
         @recipe.user_id = session[:user_id]
         if recipe_params[:cover_image].nil?
-            @recipe.cover_image.attach(io: File.open("#{Rails.root}/app/assets/images/kitten.jpg"), filename: 'kitten.jpg', content_type: 'image/jpg')
+            @recipe.cover_image.attach(io: File.open("#{Rails.root}/app/assets/images/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg"), filename: 'depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg', content_type: 'image/jpg')
         end
         if @recipe.save
             flash[:success] = "Recipe uploaded"

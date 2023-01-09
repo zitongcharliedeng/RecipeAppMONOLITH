@@ -59,35 +59,35 @@
     <br/>
     <% instructions_array = @recipe.instructions.to_s.split("\n") #( split by a new line) %>
     <ol>
-        
-            <% for each in instructions_array do %>
-                <li>
-                    <%= each %>
-                </li>
-                <br/>
-            <% end %>
+    
+        <% for each in instructions_array do %>
+            <li>
+                <%= each %>
+            </li>
+            <br/>
+        <% end %>
         
     </ol>
 </h3>
 
+<div className="comments">
+    <%= "Comments (#{Comment.all.select{|comment| comment.recipe_id == @recipe.id}.length}):" %>
 
-<%= "Comments (number of comments):" %>
-========================================
-
-<% if session[:user_id] %>
-    <%= form_with(model: @comment, local: true) do |f| %>
-        <%= f.label :content %>
-        <%= f.text_field :content, class: 'comment-content' %>
-        <br/>
-        <%= f.hidden_field :recipe_id, value: @recipe.id %>
-        <%= f.submit "Upload comment!" %>
+    <% if session[:user_id] %>
+        <%= form_with(model: @comment, local: true) do |f| %>
+            <%= f.label :content %>
+            <%= f.text_field :content, class: 'comment-content' %>
+            <br/>
+            <%= f.hidden_field :recipe_id, value: @recipe.id %>
+            <%= f.submit "Upload comment!" %>
+        <% end %>
+    <% else %>
+        <%= "(You must be logged in to comment)" %>
     <% end %>
-<% else %>
-    <%= "(You must be logged in to comment)" %>
-<% end %>
 
-<ul>
-    <% Comment.all.each do |comment|%>
-        <%= render partial: 'comments/comment', locals: {comment: comment} %> 
-    <% end %>
-</ul>
+    <ul>
+        <% Comment.all.each do |comment|%>
+            <%= render partial: 'comments/comment', locals: {comment: comment} %> 
+        <% end %>
+    </ul>
+</div>

@@ -23,7 +23,7 @@ Recipe.create(user_id: '5', title: 'apple burger', instructions: 'mix apples wit
 Recipe.create(user_id: '6', title: 'apple rice', instructions: 'mix apples with rice', ingredients: "1 apple \n 1 rice")
 
 for each in Recipe.all do     
-    each.cover_image.attach(io: File.open("#{Rails.root}/app/assets/images/kitten.jpg"), filename: 'kitten.jpg', content_type: 'image/jpg')
+    each.cover_image.attach(io: File.open("#{Rails.root}/app/assets/images/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg"), filename: 'kitten.jpg', content_type: 'image/jpg')
 end
 
 Rating.create(user_id: '1', recipe_id: '1', rating: 2)
