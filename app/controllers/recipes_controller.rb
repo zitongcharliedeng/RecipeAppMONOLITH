@@ -45,7 +45,7 @@ class RecipesController < ApplicationController
             Recipe.all.map{|recipe| p recipe.average_rating}
             return @rating_ordered_recipes = Recipe.all.sort_by{|recipe| recipe.average_rating*(-1)}
         else
-            return @rating_ordered_recipes = (Recipe.all.select {|recipe| recipe.title.downcase.start_with?(params[:recipeTitle])}).sort_by{|recipe| recipe.average_rating*(-1)}
+            return @rating_ordered_recipes = (Recipe.all.select {|recipe| recipe.title.downcase.include?(params[:recipeTitle])}).sort_by{|recipe| recipe.average_rating*(-1)}
         end
     end
     

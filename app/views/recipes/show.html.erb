@@ -1,83 +1,75 @@
 
-<%= "Average star rating of the following recipe is  #{@recipe.average_rating}." %>
-
-<% if session[:user_id] %>
-    <%= "Your rating of the following recipe is #{@current_rating.rating}." %>
-<% end %>
-
-<% if @current_rating %>
-    <%= "Your rating of the following recipe is #{@current_rating.rating}." %>
-<% end %>
-
-<% if @current_rating && session[:user_id] %>
-    <%= form_with(model: @rating, url: "/ratings/#{@current_rating.id}", method: :patch, local: true) do |f| %>
-        <%= f.label :rating_out_of_5 %>
-        <%= f.text_field :rating %>
-        <%= f.hidden_field :recipe_id, value: @recipe.id %>
-        <%= f.submit "Update rating!" %>
-    <% end %>
-<% elsif session[:user_id] %>
-    <%= form_with(model: @rating, local: true) do |f| %>
-            <%= f.label :rating_out_of_5 %>
-            <%= f.text_field :rating %>
-            <%= f.hidden_field :recipe_id, value: @recipe.id %>
-            <%= f.submit "Upload rating!" %>
-    <% end %>
-<%else%>
-    <br/>
-    (Login to rate this recipe)
-<% end %>
-
-
-
-
-
-<h1>
-    <em>A recipe for...</em>
-    <br/>
-    <%= "#{@recipe.title}" %>
-    <br/>
-    <%= image_tag @recipe.cover_image %>
-    <br/>
-    Uploaded by: <%= @author.name %>
-</h1>
-
-
-
-<h2>
-    <em>Ingredients:</em>
-    <br/>
-    <% ingredients_array = @recipe.ingredients.to_s.split("\n") #( split by a new line) %>
-    <% for each in ingredients_array do %>
-        <%= each %>
-        <br/>
-    <% end %>
-</h2>
-
-<h3> 
-    <em>Instructions:</em>
-    <br/>
-    <% instructions_array = @recipe.instructions.to_s.split("\n") #( split by a new line) %>
-    <ol>
-    
-        <% for each in instructions_array do %>
-            <li>
-                <%= each %>
-            </li>
-            <br/>
-        <% end %>
+<div class="content">
+    <ul>
+        <li><%= "The average star rating of this recipe is  #{@recipe.average_rating}" %></li>
         
-    </ol>
-</h3>
+            <% if @current_rating %>
+                <li><%= "Your rating of the following recipe is #{@current_rating.rating}" %></li>
+                <br/>
+            <% end %>
+        
+        <% if @current_rating && session[:user_id] %>
+            <%= form_with(model: @rating, url: "/ratings/#{@current_rating.id}", method: :patch, local: true) do |f| %>
+                <%= f.text_field :rating, placeholder: "Give a rating out of 5"  %>
+                <%= f.hidden_field :recipe_id, value: @recipe.id%>
+                <%= f.submit "Update rating!" %>
+            <% end %>
+        <% elsif session[:user_id] %>
+            <%= form_with(model: @rating, local: true) do |f| %>
+                    <%= f.label :rating_out_of_5 %>
+                    <%= f.text_field :rating %>
+                    <%= f.hidden_field :recipe_id, value: @recipe.id %>
+                    <%= f.submit "Upload rating!" %>
+            <% end %>
+        <%else%>
+            <br/>
+            (<a href="/login"> Login </a> to rate this recipe)
+        <% end %>
+    </ul>
+</div>
 
-<div className="comments">
-    <%= "Comments (#{Comment.all.select{|comment| comment.recipe_id == @recipe.id}.length}):" %>
+
+<div class="content recipe">
+    <h1>
+        <em>A recipe for:</em> <%= "#{@recipe.title}" %>   
+        <br/>
+        <%= image_tag @recipe.cover_image %>
+        <br/>
+        <em>Uploaded by:</em> <%= @author.name %>
+    </h1>
+    <h2>
+        <em>Ingredients:</em>
+        <br/>
+        <ul>
+            <% ingredients_array = @recipe.ingredients.to_s.split("\n") #( split by a new line) %>
+            <% for each in ingredients_array do %>
+                <li><%= each %></li>
+            <% end %>
+        </ul>
+    </h2>
+    <h2> 
+        <em>Instructions:</em>
+        <br/>
+        <% instructions_array = @recipe.instructions.to_s.split("\n") #( split by a new line) %>
+        <ol>
+        
+            <% for each in instructions_array do %>
+                <li>
+                    <%= each %>
+                </li>
+                <br/>
+            <% end %>
+            
+        </ol>
+    </h2>
+</div>
+
+<div class="content">
+    <%= "Comments (#{(Comment.all.select{|comment| comment.recipe_id == @recipe.id}).length}):" %>
 
     <% if session[:user_id] %>
         <%= form_with(model: @comment, local: true) do |f| %>
-            <%= f.label :content %>
-            <%= f.text_field :content, class: 'comment-content' %>
-            <br/>
+            <%= f.text_field :content, class: 'comment-content', placeholder: "Add a comment..."%>
             <%= f.hidden_field :recipe_id, value: @recipe.id %>
             <%= f.submit "Upload comment!" %>
         <% end %>
@@ -86,7 +78,7 @@
     <% end %>
 
     <ul>
-        <% Comment.all.each do |comment|%>
+        <% (Comment.all.select{|comment| comment.recipe_id == @recipe.id}).each do |comment|%>
             <%= render partial: 'comments/comment', locals: {comment: comment} %> 
         <% end %>
     </ul>

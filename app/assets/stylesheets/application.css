@@ -40,3 +40,30 @@ header a{
     padding: 1ch;
 }
 
+.recipe em{
+    text-decoration: underline;
+}
+
+.content {
+    background-color: rgb(227, 252, 214);
+    padding: 1ch;
+    margin: 1ch;
+}
+
+.content *{
+    background-color: rgb(227, 252, 214);
+}
+
+.comment {
+    background-color: rgb(239, 252, 232);
+    padding: 1ch;
+    margin: 1ch;
+    border: #999 solid 1px;
+    border-radius: 10px;
+    margin: 15px;
+    box-shadow: 0px 0px 0px 1px #fff inset;
+}
+
+.comment *{
+    background-color: rgb(239, 252, 232);
+}

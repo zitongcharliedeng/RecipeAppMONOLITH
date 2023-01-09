@@ -2,20 +2,16 @@
     <%# redirect to home %>
 <%# else %>
     <% provide(:title, "Signup!") %>
-
+<div class="content">  
     <h1>
-        Welcome to RecipeApp!
+        Create an account below.
     </h1>
-
-    <h2>
-        This is the signup page.
-    </h2>
+</div>
+<div class="content">
     
     <% provide(:last_button, "Create my account") # provides must be given BEFORE the the yield calls it (up to down chronologically in code)%> 
     <%= render 'users/signupform' %>
-
-
-
+</div> 
 
 
 

@@ -1,8 +1,15 @@
 <% provide(:title, 'All recipes') %>
-<h1>All recipes</h1>
-
-<ul>
-    <% @rating_ordered_recipes.each do |recipe|%>
-        <%= render partial: 'recipes/recipe_thumbnail', locals: {recipe: recipe} %> 
-    <% end %>
-</ul>
+<div class="content">  
+    <%if !(params[:recipeTitle]) || (params[:recipeTitle] == "") %>
+        <h1>All recipes:</h1>
+    <%else%>
+        <h1>All recipes<em><%=" containing '#{params[:recipeTitle]}'"%></em>:</h1>
+    <%end%>
+</div>
+<div class="content">
+    <ul>
+        <% @rating_ordered_recipes.each do |recipe|%>
+            <%= render partial: 'recipes/recipe_thumbnail', locals: {recipe: recipe} %> 
+        <% end %>
+    </ul>
+</div>

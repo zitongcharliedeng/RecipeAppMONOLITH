@@ -1,30 +1,39 @@
-    
-<% if (session[:user_id])%>   
-    <h3>NOTICE: SPLIT DIFFERENT INGREDIENTS WITH A NEW LINE (PRESS ENTER)</h3>
-    <%= form_with(model: @recipe, local: true) do |f| %>
-        <%= f.label :title %>
-        <%= f.text_field :title, class: 'title-input' %>
-        <br/>
+<div class="content">  
+    <h1>Create a recipe:</h1>
+</div>
 
-        <%= f.label :cover_image %>
-        <%= f.file_field :cover_image %>
-        <br/>
+<div class="content">  
+    <% if (session[:user_id])%>   
+        
+        <%= form_with(model: @recipe, local: true) do |f| %>
+            <%= f.label :title %>
+            <br/>
+            <%= f.text_field :title, class: 'title-input' %>
+            <br/>
 
-        <%= f.label :ingredients %>
-        <%= f.text_area :ingredients, class: 'ingredients-input' %>
-        <br/>
+            <%= f.label :cover_image %>
+            <br/>
+            <%= f.file_field :cover_image %>
+            <br/>
+        <em><h3>TIP: Split each ingredient with a new line (press enter) to put them in bullet points</h3></em>
+            <%= f.label :ingredients %>
+            <br/>
+            <%= f.text_area :ingredients, class: 'ingredients-input' %>
+            <br/>
+        <em><h3>TIP: Split each instruction with a new line (press enter) to number them</h3></em>
+            <%= f.label :instructions %>
+            <br/>
+            <%= f.text_area :instructions, class: 'instructions-input' %>
+            <br/>
+            <%= f.submit "Upload recipe!" %>
 
-        <%= f.label :instructions %>
-        <%= f.text_area :instructions, class: 'instructions-input' %>
-        <br/>
-        <%= f.submit "Upload recipe!" %>
-
-    <% end %>
-<%else%>
-    <h2> You must 
-        <a href="/login">
-            log in
-        </a> 
-        to create a recipe
-    </h2>
-<%end%>
+        <% end %>
+    <%else%>
+        <h2> You must 
+            <a href="/login">
+                log in
+            </a> 
+            to create a recipe.
+        </h2>
+    <%end%>
+</div>
