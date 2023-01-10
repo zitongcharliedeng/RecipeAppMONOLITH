@@ -2,16 +2,16 @@
      <img src= "https://cdn2.iconfinder.com/data/icons/rounded_square_icons__books_by_deleket-dexzmr/128/Recipe_Book.png" width= "100ch" >
      <h1>RecipeApp</h1>
 
-     <% if (session[:user_id]) %>
-          Logged in as <%= "#{session[:email]}" %>
-          <%= button_to "Logout", controller: "sessions", action: "delete" %>
-     <% else %>
-          <a href="/login">
-               LOGIN
-          </a>
-          
-     <% end %> 
-
+     <p>
+          <% if (session[:user_id]) %>
+               Logged in as <%= "#{session[:email]}" %>
+               <%= button_to "Logout", controller: "sessions", action: "delete" %>
+          <% else %>
+               <a href="/login">
+                    LOGIN
+               </a>
+          <% end %> 
+     </p>
      
      <a href="/home">
           HOME

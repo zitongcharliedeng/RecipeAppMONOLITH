@@ -1,4 +1,5 @@
-
+<br/>
+<br/>
 <div class="content">
     <ul>
         <li><%= "The average star rating of this recipe is  #{@recipe.average_rating}" %></li>
@@ -29,57 +30,60 @@
 </div>
 
 
-<div class="content recipe">
-    <h1>
-        <em>A recipe for:</em> <%= "#{@recipe.title}" %>   
-        <br/>
-        <%= image_tag @recipe.cover_image %>
-        <br/>
-        <em>Uploaded by:</em> <%= @author.name %>
-    </h1>
-    <h2>
-        <em>Ingredients:</em>
-        <br/>
+<div class="recipe">
+    <div class="content">
+        <h1>
+            <em>A recipe for:</em> <%= "#{@recipe.title}" %>   
+            <br/>
+            <div class="recipeImage">
+                <%= image_tag @recipe.cover_image %>
+            </div>
+            <em>Uploaded by:</em> <%= @author.name %>
+        </h1>
+    </div>
+    <div class="content">
+        <h2>
+            <em>Ingredients:</em>
+            <br/>
+            <ul>
+                <% ingredients_array = @recipe.ingredients.to_s.split("\n") #( split by a new line) %>
+                <% for each in ingredients_array do %>
+                    <li><%= each %></li>
+                <% end %>
+            </ul>
+        </h2>
+        <h2> 
+            <em>Instructions:</em>
+            <br/>
+            <% instructions_array = @recipe.instructions.to_s.split("\n") #( split by a new line) %>
+            <ol>
+            
+                <% for each in instructions_array do %>
+                    <li>
+                        <%= each %>
+                    </li>
+                <% end %>
+                
+            </ol>
+        </h2>
+    </div>
+    <div class="content">
+        <%= "Comments (#{(Comment.all.select{|comment| comment.recipe_id == @recipe.id}).length}):" %>
+
+        <% if session[:user_id] %>
+            <%= form_with(model: @comment, local: true) do |f| %>
+                <%= f.text_field :content, class: 'comment-content', placeholder: "Add a comment..."%>
+                <%= f.hidden_field :recipe_id, value: @recipe.id %>
+                <%= f.submit "Upload comment!" %>
+            <% end %>
+        <% else %>
+            <%= "(You must be logged in to comment)" %>
+        <% end %>
+
         <ul>
-            <% ingredients_array = @recipe.ingredients.to_s.split("\n") #( split by a new line) %>
-            <% for each in ingredients_array do %>
-                <li><%= each %></li>
+            <% (Comment.all.select{|comment| comment.recipe_id == @recipe.id}).each do |comment|%>
+                <%= render partial: 'comments/comment', locals: {comment: comment} %> 
             <% end %>
         </ul>
-    </h2>
-    <h2> 
-        <em>Instructions:</em>
-        <br/>
-        <% instructions_array = @recipe.instructions.to_s.split("\n") #( split by a new line) %>
-        <ol>
-        
-            <% for each in instructions_array do %>
-                <li>
-                    <%= each %>
-                </li>
-                <br/>
-            <% end %>
-            
-        </ol>
-    </h2>
-</div>
-
-<div class="content">
-    <%= "Comments (#{(Comment.all.select{|comment| comment.recipe_id == @recipe.id}).length}):" %>
-
-    <% if session[:user_id] %>
-        <%= form_with(model: @comment, local: true) do |f| %>
-            <%= f.text_field :content, class: 'comment-content', placeholder: "Add a comment..."%>
-            <%= f.hidden_field :recipe_id, value: @recipe.id %>
-            <%= f.submit "Upload comment!" %>
-        <% end %>
-    <% else %>
-        <%= "(You must be logged in to comment)" %>
-    <% end %>
-
-    <ul>
-        <% (Comment.all.select{|comment| comment.recipe_id == @recipe.id}).each do |comment|%>
-            <%= render partial: 'comments/comment', locals: {comment: comment} %> 
-        <% end %>
-    </ul>
+    </div>
 </div>

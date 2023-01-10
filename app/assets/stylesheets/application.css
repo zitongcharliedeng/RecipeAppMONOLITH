@@ -40,6 +40,10 @@ header a{
     padding: 1ch;
 }
 
+header p{
+    color:black;
+}
+
 .recipe em{
     text-decoration: underline;
 }
@@ -67,3 +71,18 @@ header a{
 .comment *{
     background-color: rgb(239, 252, 232);
 }
+
+.recipeImage *{
+    width:30ch;
+    height:30ch;
+    margin: 1ch
+}
+
+.recipe{
+    display: flex
+}
+
+.recipe{
+    padding: 2ch
+}
+
