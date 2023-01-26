@@ -8,7 +8,6 @@ git clone URL
 ### Step 2 ###
 bundle install  
 rails db:migrate
-
 rails db:seed // this is optional
 ### Step 3 ###
 rails s
