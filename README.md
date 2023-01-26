@@ -6,8 +6,8 @@ https://user-images.githubusercontent.com/108423881/214756743-5bf40211-cea6-4ccc
 ### Step 1 ###
 git clone URL
 ### Step 2 ###
-bundle install  
-rails db:migrate
+bundle install 
+rails db:migrate 
 rails db:seed // this is optional
 ### Step 3 ###
 rails s
