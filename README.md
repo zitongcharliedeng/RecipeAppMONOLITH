@@ -1,25 +1,16 @@
-# README
+# Running in development #
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+https://user-images.githubusercontent.com/108423881/214756743-5bf40211-cea6-4ccc-9b0d-bf2f3124e09a.mp4
 
-Things you may want to cover:
+## Commands: ##
+### Step 1 ###
+git clone URL
+### Step 2 ###
+bundle install  
+rails db:migrate
+rails db:seed // this is optional
+### Step 3 ###
+rails s
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# CharlieApp
+# Rails prerequisites #
+https://guides.rubyonrails.org/v5.1/getting_started.html
